@@ -1,26 +1,28 @@
 #!/usr/bin/python
 import praw
-
+import secret
 #Enter your correct Reddit information into the variable below
 
 userAgent = 'PositiveFeedbackBot'
 
-cID = 'Enter your personal use script'
+cID = secret.ID
 
-cSC= 'Enter you client secret'
+cSC= secret.SC
 
-userN = 'Enter your Reddit username'
+userN = secret.userName
 
-userP ='Enter your Reddit password'
+userP = secret.userPassword
 
 numFound = 0
 
 reddit = praw.Reddit(user_agent=userAgent, client_id=cID, client_secret=cSC, username=userN, password=userP)
 
+
+
 bot_phrase = 'You seem negative today you need to chill'
 
-for mention in reddit.inbox.mentions(limit=25)
-    numfound=numfound+1
+for mention in reddit.inbox.unread(limit=3):
+    numFound=numFound+1
     parent = mention.parent()
     #bot_phrase = SentimentAnalysis(parent.body)
     mention.reply(bot_phrase)
@@ -30,10 +32,7 @@ for mention in reddit.inbox.mentions(limit=25)
     print("Score: ", mention.score)
     print("---------------------------------")
     print('Bot saying: ', bot_phrase)
-    print()
 
 if numFound == 0:
-
-print()
-
-print("Sorry, didn't find any posts with those keywords, try again!")
+    print()
+    print("Sorry, could not find any mentions")
