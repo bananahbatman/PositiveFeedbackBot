@@ -1,10 +1,10 @@
 
-ID = "SqwhZ2Fr4gPvXg"
+ID = "xxx"
 
 
-SC = 'syGlCA3lMB50TlHpo_jr2kvwA3SAMg'
+SC = 'xxx'
 
-userName = 'Ijustmadethisidkwhat'
+userName = 'xxx'
 
 
-userPassword ='Canthackthisman1'
+userPassword ='xxx'
