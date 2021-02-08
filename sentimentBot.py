@@ -3,7 +3,7 @@ import praw
 
 #Enter your correct Reddit information into the variable below
 
-userAgent = 'Enter Bot name'
+userAgent = 'PositiveFeedbackBot'
 
 cID = 'Enter your personal use script'
 
@@ -17,37 +17,20 @@ numFound = 0
 
 reddit = praw.Reddit(user_agent=userAgent, client_id=cID, client_secret=cSC, username=userN, password=userP)
 
-subreddit = reddit.subreddit('weather') #any subreddit you want to monitor
+bot_phrase = 'You seem negative today you need to chill'
 
-bot_phrase = 'Aw shucks, looks like I am staying in >:(' #phrase that the bot replies with
-
-keywords = {'Cold', 'chicago', 'polar', 'vortex'} #makes a set of keywords to find in subreddits
-
-for submission in subreddit.hot(limit=10): #this views the top 10 posts in that subbreddit
-
-n_title = submission.title.lower() #makes the post title lowercase so we can compare our keywords with it.
-
-for i in keywords: #goes through our keywords
-
-if i in n_title: #if one of our keywords matches a title in the top 10 of the subreddit
-
-numFound = numFound + 1
-
-print('Bot replying to: ') #replies and outputs to the command line
-
-print("Title: ", submission.title)
-
-print("Text: ", submission.selftext)
-
-print("Score: ", submission.score)
-
-print("---------------------------------")
-
-print('Bot saying: ', bot_phrase)
-
-print()
-
-submission.reply(bot_phrase)
+for mention in reddit.inbox.mentions(limit=25)
+    numfound=numfound+1
+    parent = mention.parent()
+    #bot_phrase = SentimentAnalysis(parent.body)
+    mention.reply(bot_phrase)
+    print('Bot replying to: ') #replies and outputs to the command line
+    print("Title: ", mention.title)
+    print("Text: ", mention.selftext)
+    print("Score: ", mention.score)
+    print("---------------------------------")
+    print('Bot saying: ', bot_phrase)
+    print()
 
 if numFound == 0:
 
