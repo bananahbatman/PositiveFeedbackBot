@@ -1,10 +1,10 @@
 
-ID = "xxx"
+ID = 'FILL IN'
 
 
-SC = 'xxx'
+SC = 'FILL IN'
 
-userName = 'xxx'
+userName = 'FILL IN'
 
 
-userPassword ='xxx'
+userPassword = 'FILL IN'
